@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/admin';
 
     /**
      * The controller namespace for the application.
@@ -26,7 +26,14 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string|null
      */
-    // protected $namespace = 'App\\Http\\Controllers';
+    protected $namespace = 'App\\Http\\Controllers';
+
+    /**
+     * The Version of application api.
+     *
+     * @var string
+     */
+    public const API_PREFIX = 'api/v1';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -47,6 +54,8 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
+
+        $this->mapSPARoutes();
     }
 
     /**
@@ -59,5 +68,22 @@ class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
+    }
+
+    /**
+     * All non matchable resources we will show standard Vue page,
+     *
+     * and redirect it through VueRoutes on client side
+     *
+     * @return void
+     */
+    protected function mapSPARoutes()
+    {
+        Route::namespace($this->namespace)
+            ->middleware('web')
+            ->group(function () {
+                Route::view('/{any}', 'spa')
+                    ->where('any', '.*');
+            });
     }
 }
