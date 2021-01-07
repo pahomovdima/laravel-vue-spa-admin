@@ -1,15 +1,13 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const API_ENDPOINT = 'auth'
+const API_ENDPOINT = 'auth';
 
 export default {
-
-    verify(user, query) {
-        return axios.post(`${API_ENDPOINT}/email/verify/${user}?${query}`)
+    verify (user, query) {
+        return axios.post(`${API_ENDPOINT}/email/verify/${user}?${query}`);
     },
 
-    resend() {
-        return axios.post(`${API_ENDPOINT}/email/resend`)
-    },
-
+    resend () {
+        return axios.post(`${API_ENDPOINT}/email/resend`);
+    }
 }

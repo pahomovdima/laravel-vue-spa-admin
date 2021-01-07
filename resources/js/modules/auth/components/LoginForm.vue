@@ -56,41 +56,35 @@
             loading: false
         },
 
-        data: () => ({
-            form: {
-                email: '',
-                password: ''
-            },
-            rules: {
-                email: [
-                    {
-                        required: true,
-                        message:
-                            this.$t(
-                                'global.form.rules.required',
-                                {
-                                    fieldName: this.$t('auth.login.email_label')
-                                }
-                            ),
-                        trigger: 'blur'
-                    }
-                ],
-                password: [
-                    {
-                        required:true,
-                        message:
-                            this.$t(
-                                'global.form.rules.required',
-                                {
+        data () {
+            return {
+                form: {
+                    email: '',
+                    password: ''
+                },
+                rules: {
+                    email: [
+                        {
+                            required: true,
+                            message: this.$t('global.form.rules.required', {
+                                    'fieldName': this.$t('auth.login.email_label')
+                                }),
+                            trigger: 'blur'
+                        }
+                    ],
+                    password: [
+                        {
+                            required: true,
+                            message: this.$t('global.form.rules.required', {
                                     'fieldName': this.$t('auth.login.password_label')
-                                }
-                            ),
-                        trigger: 'blur'
-                    }
-                ],
-            },
-            formErrors: new Errors()
-        }),
+                                }),
+                            trigger: 'blur'
+                        }
+                    ]
+                },
+                formErrors: new Errors()
+            }
+        },
 
         watch: {
             errors: function () {
@@ -107,8 +101,8 @@
                         });
                     }
                 })
-            },
-        },
+            }
+        }
     }
 </script>
 
@@ -126,5 +120,4 @@
             }
         }
     }
-
 </style>

@@ -9,6 +9,7 @@ import store from './core/store';
 
 import globalMixin from './includes/mixins/globalMixin';
 
+import './bootstrap/auth';
 import './bootstrap/moment';
 
 try {

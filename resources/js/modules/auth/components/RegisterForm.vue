@@ -82,101 +82,80 @@
             loading: Boolean,
         },
 
-        data: () => ({
-            form: {
-                email: '',
-                password: '',
-                password_confirmation: ''
-            },
-            rules: {
-                email: [
-                    {
-                        required: true,
-                        message:
-                            this.$t(
-                                'global.form.rules.required',
-                                {
+        data () {
+            return {
+                form: {
+                    email: '',
+                    password: '',
+                    password_confirmation: ''
+                },
+                rules: {
+                    email: [
+                        {
+                            required: true,
+                            message: this.$t('global.form.rules.required', {
                                     'fieldName': this.$t('auth.register.email_label')
-                                }
-                            ),
-                        trigger: 'blur'
-                    },
-                    {
-                        type: 'email',
-                        message: this.$t('global.form.rules.email'),
-                        trigger: 'blur'
-                    }
-                ],
-                name: [
-                    {
-                        required:true,
-                        message:
-                            this.$t(
-                                'global.form.rules.required', {
+                                }),
+                            trigger: 'blur'
+                        },
+                        {
+                            type: 'email',
+                            message: this.$t('global.form.rules.email'),
+                            trigger: 'blur'
+                        }
+                    ],
+                    name: [
+                        {
+                            required: true,
+                            message: this.$t('global.form.rules.required', {
                                     'fieldName': this.$t('auth.register.name_label')
-                                }
-                            ),
-                        trigger: 'blur'
-                    },
-                    {
-                        trigger: 'blur',
-                        min: 3,
-                        max: 255,
-                        message:
-                            this.$t(
-                                'global.form.rules.max',
-                                {
+                                }),
+                            trigger: 'blur'
+                        },
+                        {
+                            trigger: 'blur',
+                            min: 3,
+                            max: 255,
+                            message: this.$t('global.form.rules.max', {
                                     'fieldName': this.$t('auth.register.name'),
                                     'attribute': 255
-                                }
-                            )
-                    }
-                ],
-                password: [
-                    {
-                        required: true,
-                        message:
-                            this.$t(
-                                'global.form.rules.required',
-                                {
+                                })
+                        }
+                    ],
+                    password: [
+                        {
+                            required: true,
+                            message: this.$t('global.form.rules.required', {
                                     'fieldName': this.$t('auth.register.password_label')
-                                }
-                            ),
-                        trigger: 'blur'
-                    },
-                    {
-                        trigger: 'blur',
-                        min: 8,
-                        max: 12,
-                        message:
-                            this.$t(
-                                'global.form.rules.max',
-                                {
+                                }),
+                            trigger: 'blur'
+                        },
+                        {
+                            trigger: 'blur',
+                            min: 8,
+                            max: 12,
+                            message: this.$t('global.form.rules.max', {
                                     'fieldName': this.$t('auth.register.password_label'),
-                                    'attribute': 8,
-                                }
-                            )
-                    }
-                ],
-                password_confirmation : [
-                    {
-                        required: true,
-                        message:
-                            this.$t(
-                                'global.form.rules.required',
-                                {
+                                    'attribute': 8
+                                })
+                        }
+                    ],
+                    password_confirmation : [
+                        {
+                            required: true,
+                            message: this.$t('global.form.rules.required', {
                                     'fieldName': this.$t('auth.register.password_confirmation_label')
-                                }
-                            )
-                    },
-                    {
-                        validator: this.checkPassIdentical,
-                        trigger: 'blur'
-                    }
-                ]
-            },
-            formErrors: new Errors()
-        }),
+                                })
+                        },
+                        {
+                            validator: this.checkPassIdentical,
+                            trigger: 'blur'
+                        }
+                    ]
+                },
+                formErrors: new Errors()
+            }
+        },
 
         watch: {
             errors: function (val) {
