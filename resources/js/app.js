@@ -32,7 +32,7 @@ Vue.use(
     }
 );
 
-Vue.config.productionTip = false;
+Vue.prototype.config = window.config;
 
 Vue.mixin(globalMixin);
 

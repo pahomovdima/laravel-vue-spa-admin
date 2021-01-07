@@ -5,6 +5,7 @@
 import Home from "./components/Home";
 import Welcome from "./components/Welcome";
 import Index from "./components/Index";
+import NotFound from "./components/NotFound";
 
 /**
  * Подключаю динамически роуты из модулей
@@ -22,6 +23,9 @@ for(let i in modules) {
     moduleRoutes = moduleRoutes.concat(modules[i][1].routes)
 }
 
+/**
+ * Экспортирую роуты
+ */
 export const routes = [
     {
         path: '/admin',
@@ -38,6 +42,11 @@ export const routes = [
                 path: '/',
                 component: Index,
                 name: 'index',
+            },
+            {
+                path: '*',
+                component: NotFound,
+                name: 'not_found'
             }
         ]
     }
