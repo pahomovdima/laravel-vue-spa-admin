@@ -1,7 +1,14 @@
 <template>
     <div>
-        <h1>{{ $t('auth.login.title') }}</h1>
-        <login-form @submit="onSubmit" :errors="authErrors" :loading="loading"></login-form>
+        <h1>
+            {{ $t('auth.login.title') }}
+        </h1>
+
+        <login-form
+            @submit="onSubmit"
+            :errors="authErrors"
+            :loading="loading"
+        />
     </div>
 </template>
 

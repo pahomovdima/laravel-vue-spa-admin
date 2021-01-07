@@ -1,25 +1,33 @@
 <template>
     <div>
-        <h1>{{ $t('auth.register.title') }}</h1>
-        <register-form @submit="onSubmit" :loading="loading" :errors="authErrors"></register-form>
+        <h1>
+            {{ $t('auth.register.title') }}
+        </h1>
+
+        <register-form
+            @submit="onSubmit"
+            :loading="loading"
+            :errors="authErrors"
+        />
     </div>
 </template>
 
 <script>
     import RegisterForm from "./RegisterForm";
-    import {ROUTE_LOGIN} from "../routes_auth";
+    import { ROUTE_LOGIN } from "../routes_auth";
 
     export default {
         name: 'Register',
+
         components: {RegisterForm},
-        data() {
-            return {
-                loading: false,
-                authErrors: {},
-            }
-        },
+
+        data: () => ({
+            loading: false,
+            authErrors: {},
+        }),
+
         methods: {
-            onSubmit(signUpFormData) {
+            onSubmit (signUpFormData) {
                 this.$auth
                     .register({
                         data: signUpFormData,

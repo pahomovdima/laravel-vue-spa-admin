@@ -17,7 +17,7 @@ export default [
         name: ROUTE_LOGIN,
         meta: {
             auth: false,
-        },
+        }
     },
     {
         path: '/register',
@@ -25,7 +25,7 @@ export default [
         name: ROUTE_REGISTER,
         meta: {
             auth: false,
-        },
+        }
     },
     {
         path: 'email/verify/:user',
