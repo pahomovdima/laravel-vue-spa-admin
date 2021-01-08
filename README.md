@@ -1,7 +1,7 @@
 ### Laravel Vue SPA Admin-panel
 
 ## Install
-- `git clone https://github.com/Yurich84/laravel-vue-spa-skeleton.git`
+- `git clone https://github.com/pahomovdima/laravel-vue-spa-admin`
 - `cd laravel-vue-spa-skeleton`
 - `composer install`
 - `cp .env.example .env` - copy .env file
