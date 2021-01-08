@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Welcome from "./components/Welcome";
 import Index from "./components/Index";
 import NotFound from "./components/NotFound";
+
 import auth from '../modules/auth/routes_auth';
 
 /**

@@ -88,7 +88,6 @@
 
         watch: {
             errors: function () {
-
                 this.formErrors.record(this.errors);
             }
         },
