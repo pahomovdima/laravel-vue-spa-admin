@@ -17,15 +17,19 @@
 
     export default {
         name: 'Login',
-        components: {LoginForm},
-        data() {
-            return {
-                authErrors: {},
-                loading: false,
-            }
+
+        components: {
+            LoginForm
         },
+
+        data: () => ({
+            authErrors: {},
+            loading: false,
+        }),
+
         methods: {
-            async onSubmit(loginData) {
+
+            async onSubmit (loginData) {
                 this.$auth
                     .login({
                         data: loginData,

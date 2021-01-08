@@ -40,16 +40,17 @@
 </template>
 
 <script>
-import Navbar from "./Navbar";
-import Sidebar from "./Sidebar";
+    import Navbar from "./Navbar";
+    import Sidebar from "./Sidebar";
 
-export default {
-    name: 'Home',
-    components: {
-        Sidebar,
-        Navbar
+    export default {
+        name: 'Home',
+
+        components: {
+            Sidebar,
+            Navbar
+        }
     }
-}
 </script>
 
 <style lang="scss">

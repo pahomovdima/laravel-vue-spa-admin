@@ -43,25 +43,31 @@
         height: 100vh;
         margin: 0;
     }
+
     .full-height {
         height: 100vh;
     }
+
     .flex-center {
         align-items: center;
         display: flex;
         justify-content: center;
     }
+
     .position-ref {
         position: relative;
     }
+
     .top-right {
         position: absolute;
         right: 10px;
         top: 18px;
     }
+
     .content {
         text-align: center;
     }
+
     .links > a {
         color: #636b6f;
         padding: 0 25px;
@@ -71,6 +77,7 @@
         text-decoration: none;
         text-transform: uppercase;
     }
+
     .m-b-md {
         margin-bottom: 30px;
     }

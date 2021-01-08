@@ -55,6 +55,8 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
         });
 
+        $this->mapModulesRoutes();
+
         $this->mapSPARoutes();
     }
 
@@ -68,6 +70,47 @@ class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
+    }
+
+    /**
+     * Define the "modules" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapModulesRoutes()
+    {
+        $modulesFolder = app_path('Modules');
+        $modules = $this->getModulesList($modulesFolder);
+
+        foreach ($modules as $module) {
+            $routesPath = $modulesFolder . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . 'routes_api.php';
+
+            if (file_exists($routesPath)) {
+                Route::prefix(self::API_PREFIX)
+                    ->middleware('api')
+                    ->namespace("\\App\\Modules\\$module\Controllers")
+                    ->group($routesPath);
+            }
+        }
+    }
+
+    /**
+     * @param string $modules_folder
+     * @return array
+     */
+    private function getModulesList(string $modules_folder): array
+    {
+        return
+            array_values(
+                array_filter(
+                    scandir($modules_folder),
+                    function ($item) use($modules_folder) {
+                        return is_dir($modules_folder . DIRECTORY_SEPARATOR . $item) && !in_array($item, [".",".."]);
+                    }
+                )
+            );
     }
 
     /**
