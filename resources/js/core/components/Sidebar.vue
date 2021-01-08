@@ -64,9 +64,7 @@
 
     export default {
         name: "Sidebar",
-        data: () => ({
 
-        }),
         methods: {
             menuItemIsAvailable(item) {
                 let allowed = !item.meta.hidden;
@@ -77,12 +75,15 @@
 
                 return allowed;
             },
+
             handleOpen() {
                 // console.log('handleOpen');
             },
+
             handleClose() {
                 // console.log('handleClose');
             },
+
             handleSelect: function () {
                 // console.log('handleSelect');
             }

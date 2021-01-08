@@ -5,13 +5,17 @@
     >
         <el-col
             :span="10"
-            class="logo logo-width"
+            class="logo"
+            :class="coreIsCollapsed?'logo-collapse-width':'logo-width'"
         >
-            Admin Vue ElementUi
+            {{ coreIsCollapsed ? '' : config.appName }}
         </el-col>
 
         <el-col :span="10">
-            <div class="tools">
+            <div
+                class="tools"
+                @click.prevent="collapse"
+            >
                 <i class="fa fa-align-justify"></i>
             </div>
         </el-col>
@@ -40,7 +44,7 @@
                         @click.native="logout"
                         dusk="logout"
                     >
-                        logout
+                        {{ $t('auth.logout.title') }}
                     </el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
@@ -49,12 +53,54 @@
 </template>
 
 <script>
+    import {mapGetters, mapMutations} from 'vuex'
+    import {TOGGLE_COLLAPSE} from "../store/types";
+
     export default {
         name: "Navbar",
+
         data: () => ({
-            sysUserName: 'pahomovdima',
-            sysUserAvatar: ''
+            sysUserName: '',
+            sysUserAvatar: '',
         }),
+
+        mounted () {
+            const user = this.$auth.user();
+
+            if (user) {
+                this.sysUserName = user.name || '';
+                this.sysUserAvatar = user.avatar || '';
+            }
+        },
+
+        computed: {
+            ...mapGetters([
+                'coreIsCollapsed'
+            ])
+        },
+
+        methods: {
+            ...mapMutations([
+                TOGGLE_COLLAPSE
+            ]),
+
+            logout: function () {
+                this.$confirm(
+                    this.$t('auth.logout_confirm.text'),
+                    this.$t('auth.logout_confirm.title'),
+                    {
+                        confirmButtonText: this.$t('auth.logout_confirm.button_ok'),
+                        cancelButtonText: this.$t('auth.logout_confirm.button_cancel'),
+                    }
+                ).then(() => {
+                    this.$auth.logout();
+                });
+            },
+
+            collapse() {
+                this[TOGGLE_COLLAPSE]();
+            }
+        },
     }
 </script>
 

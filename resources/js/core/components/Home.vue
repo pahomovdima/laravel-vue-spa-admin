@@ -1,6 +1,7 @@
 <template>
     <el-row
         class="home-container"
+        v-if="$auth.ready()"
     >
         <navbar />
 
@@ -37,6 +38,9 @@
             </section>
         </el-col>
     </el-row>
+    <div v-else>
+        Loading ...
+    </div>
 </template>
 
 <script>
